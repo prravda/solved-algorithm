@@ -22,10 +22,6 @@ const solution = (n) => {
         rawNumber = rawNumber - digitNumber * number;
         ternaryExponent --;
     }
-
-    console.log(container);
-
-    const reverserTernary = container.reverse();
     const maxIndex = reverserTernary.length - 1;
     const converToDecimal = reverserTernary.reduce((accm, arg, index) => {
         return accm + arg * (3 ** (maxIndex - index));
