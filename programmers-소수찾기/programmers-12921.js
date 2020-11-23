@@ -1,18 +1,15 @@
 const solution = (n) => {
+    const sqrtOfN = [...Array(Math.floor(Math.sqrt(n))).keys()].slice(2);
+    const numberList = [...Array(n).keys(), n].slice(2);
     const primes = [];
-    for (let i = 2; i <= n; i++) {
-        if (i === 2 || i === 3 || i === 5 || i === 7) {
-            primes.push(i);
-            continue;
-        }
-        if (i % 2 === 0 || i % 3 === 0 || i % 5 === 0 || i % 7 === 0) {
-            continue;
+    numberList.filter(number => {
+        if (sqrtOfN.every(compare => number % compare !== 0)) {
+            return true;
         } 
-        if (primes.every(arg => i % arg !== 0)) {
-            primes.push(i);
-        }
-    }
+        return false;
+    });
     return primes.length;
 };
 
-console.log(solution(200));
+console.log(solution(5));
+
