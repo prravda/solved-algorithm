@@ -1,26 +1,21 @@
 const solution = (n) => {
-    const arrToN = [];
+    let decmCounter = 0;
     for (let i = 2; i <= n; i++) {
-        arrToN.push(i);
-    }
-
-    const decmList = [];
-    for (const num of arrToN) {
-        if (num === 2) {
-            decmList.push(num)
+        if (i === 2) {
+            decmCounter++;
         }
-        const roundHalf = Math.round(num/2);
-        for (let i = 2; i <= roundHalf; i++) {
-            if (num % i === 0) {
+        const roundHalf = Math.round(i/2);
+        for (let j = 2; j <= roundHalf; j++) {
+            if (i % j === 0) {
                 break;
             } 
-            if (i === roundHalf) {
-                decmList.push(num);
+            if (j === roundHalf) {
+                decmCounter++;
+                return;
             }
         }
     }
-
-    return decmList;
+    return decmCounter;
 };
 
 console.log(solution(5));
