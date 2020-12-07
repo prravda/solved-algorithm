@@ -15,7 +15,7 @@ const solution = (s, n) => {
             return arg;
         }
         
-        if (lowerCaseFirstCharCode <= arg.charCodeAt() <= lowerCaseLastCharCode) {
+        if (lowerCaseFirstCharCode <= arg.charCodeAt()  && arg.charCodeAt() <= lowerCaseLastCharCode) {
             // 소문자인 경우 + n 뒤의 문자가 z 의 charCode 를 넘기는 경우 
             if (arg.charCodeAt() + n > lowerCaseLastCharCode) {
                 return String.fromCharCode(arg.charCodeAt() + n - lowerCaseLastCharCode + lowerCaseFirstCharCode - 1);
@@ -24,7 +24,7 @@ const solution = (s, n) => {
             return String.fromCharCode(arg.charCodeAt() + n);
         }
 
-        if (upperCaseFirstCharCode <= arg.charCodeAt() <= upperCaseLastCharCode) {
+        if (upperCaseFirstCharCode <= arg.charCodeAt() && arg.charCodeAt() <= upperCaseLastCharCode) {
             if (arg.charCodeAt() + n > upperCaseLastCharCode) {
                 return String.fromCharCode(arg.charCodeAt() + n - upperCaseLastCharCode + upperCaseFirstCharCode - 1);
             }
@@ -34,5 +34,5 @@ const solution = (s, n) => {
     }).join('');
 };
 
-console.log(solution("a B z", 20));
+console.log(solution("a C z", 25));
 // console.log(solution("z", 1));
