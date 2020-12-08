@@ -1,6 +1,5 @@
 const solution = (s) => {
-    const splittedStr = s.split(' ');
-    return splittedStr.map(word => {
+    return s.split(' ').map(word => {
         if (word === ' ') {
             return ' ';
         }
