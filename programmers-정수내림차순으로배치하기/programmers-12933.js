@@ -1,7 +1,5 @@
 const solution = (n) => {
-    return String(n).split('').reduce((accm, curr) => {
-        return accm + Number(curr);
-    }, 0);
+    return Number(String(n).split('').sort((a, b) => b - a).join(''));
 };
 
 console.log(solution(987));
