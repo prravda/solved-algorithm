@@ -35,9 +35,9 @@ implementation 유형의 난이도를 결정짓는 요소들은 크게
 
 ## 상하좌우
 
-[https://imgur.com/02uv49H]
+[https://imgur.com/02uv49H](https://imgur.com/02uv49H)
 
-[https://imgur.com/DPq6ebN]
+[https://imgur.com/DPq6ebN](https://imgur.com/DPq6ebN)
 
 # 알고리즘 추가 설명
 
