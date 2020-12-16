@@ -7,7 +7,7 @@ const solution = (size, direction) => {
 
   let currentLocation = [1, 1];
 
-  for (eachDirection of direction) {
+  for (eachDirection of direction) {  
     if (eachDirection === 'U') {
       if (currentLocation[0] - 1 < 1) {
         continue;

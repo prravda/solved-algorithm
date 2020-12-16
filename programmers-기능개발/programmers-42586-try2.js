@@ -5,10 +5,9 @@ const solution = (progresses, speeds) => {
         for (let i = 0; i < progresses.length; i++) {
             progresses[i] = progresses[i] + (neededDay * speeds[i]);
         }
-        let index = 0;
         let tempArr = [];
-        while (progresses[index] >= 100 && progresses.length !== 0) {
-            tempArr.push(progresses[index]);
+        while (progresses[0] >= 100 && progresses.length !== 0) {
+            tempArr.push(progresses[0]);
             progresses.shift();
             speeds.shift();
         }
