@@ -33,8 +33,7 @@ const solution = (bridge_length, weight, truck_weights) => {
             trucksCrossedBridge.push(trucksOnBridge.shift());
         }
     }
-
     return neededTime + 1;
-}
+};
 
 console.log(solution(2, 10, [7,4,5,6]));
