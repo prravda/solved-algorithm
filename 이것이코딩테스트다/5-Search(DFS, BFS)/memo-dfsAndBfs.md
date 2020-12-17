@@ -20,7 +20,7 @@ Adjacent: 두 Node 가 Edge 를 통해 연결되어 있는 경우, 두 Node 는 
 
 ## Graph 를 나타내는 방법
 
-![how to describe a graph]('이것이코딩테스트다/5-Search(DFS, BFS)/example.png')
+![how to describe a graph](./example.png)
 
 이런 식으로 표를 통해 노드와 노드, 그리고 그 노드를 이어주는 간선에 번호를 매겨 표기할 수도 있다.
 
@@ -58,7 +58,7 @@ graphExample[2].push([0, 5]);
 
 # 직접 구현해보기
 
-![example graph]('이것이코딩테스트다/5-Search(DFS, BFS)/node.png')
+![example graph](./node.png)
 
 위 노드를 각각의 방법(DFS, BFS)로 탐색해본다. 단, 적은 숫자의 노드부터 먼저 순회한다.
 
