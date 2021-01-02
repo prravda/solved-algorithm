@@ -26,9 +26,11 @@ const solution = (n) => {
         } else {
             currentDigitNumber = Math.floor(currentValue / currentDigitValue);
         }
-        // 계산한 자릿수를 넣어줌
+        // 자릿수가 0이 아닌 경우에 한해서, 계산한 자릿수를 넣어줌
         // 그리고, currentValue 에 나머지 값들을 재할당해줌
-        digits.push(currentDigitNumber);
+        if (currentDigitNumber !== 0) {
+            digits.push(currentDigitNumber);
+        }
         currentValue = currentValue - (currentDigitValue * currentDigitNumber);
     }
     console.log(digits);
