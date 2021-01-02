@@ -43,5 +43,5 @@ const solution = (n) => {
     return digits.join('');
 };
 
-// console.log(solution(513));
+console.log(solution(513));
 console.log(solution(28));
