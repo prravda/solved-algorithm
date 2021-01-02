@@ -25,7 +25,7 @@ const solution = (n) => {
 
        const sumOfRest = eachDigitValue.slice(maxDigit - i + 1).reduce((curr, accm) => curr + accm);
 
-       if (restValue < sumOfRest || restValue > 3 * sumOfRest - 1) {
+       if (restValue < sumOfRest || restValue > 3 * sumOfRest + 1) {
            currentDigitNumber --;
        }
 
