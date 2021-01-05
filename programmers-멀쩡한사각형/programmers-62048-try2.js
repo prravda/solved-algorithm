@@ -8,7 +8,6 @@ const solution = (w, h) => {
         if (min % i === 0 && max % i === 0) {
             gcd = i;
         }
-        continue;
     }
 
     // 사용할 수 없는 사각형의 갯수는 w + h - w 와 h 의 최대공약수
