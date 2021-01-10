@@ -5,13 +5,14 @@ const solution = (number, k) => {
     let loopCounter = 0;
     while (removableCounter > 0) {
         if (loopCounter >= numToArr.length) {
-            numToArr = [...numToArr.slice(0, numToArr.length - removableCounter)];
+            numToArr = numToArr.slice(0, numToArr.length - removableCounter);
             break;
         }
         const targetArr = numToArr.slice(loopCounter, (removableCounter + loopCounter + 1)).map(arg => Number(arg));
         const maxValue = Math.max(...targetArr);
         const maxValueIndex = numToArr.slice(loopCounter).map(arg => Number(arg)).indexOf(maxValue) + loopCounter;
-        numToArr = [...numToArr.slice(0, loopCounter), ...numToArr.slice(maxValueIndex)];
+        let newArr = numToArr.slice(0, loopCounter).concat(numToArr.slice(maxValueIndex));
+        numToArr = newArr;
         removableCounter = removableCounter - (maxValueIndex - loopCounter);
         loopCounter ++;
     }
