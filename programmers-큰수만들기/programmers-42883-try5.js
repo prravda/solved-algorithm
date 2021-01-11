@@ -1,26 +1,19 @@
 const solution = (number, k) => {
-    const lengthOfNumber = number.length;
     let numToArr = [...number].map(arg => Number(arg));
     let removable = k;
+    const lengthOfOriginNumber = numToArr.length;
+    
+    // 최댓값의 기준: 이전의 최댓값보다 크다 && 다음의 값보다 크다
+    // 최댓값을 찾으려는 범위: 첫 번째 수부터 removable 까지
+    // 최댓값의 초기값: 첫 번째 index
+    let tempMax = numToArr[0];
+    let tempMaxIndex = 0;
+    for (let i = 0; i < removable; i++) {
 
-    const tempStack = [];
-    while (removable > 0) {
-        if (tempStack.length >= lengthOfNumber - k) {
-            return tempStack.join('');
-        }
-
-        const targetArr = numToArr.slice(0, removable + 1);
-        const maxValue = Math.max(...targetArr);
-        const maxValueIndex = numToArr.indexOf(maxValue);
-
-        tempStack.push(maxValue);
-        numToArr = numToArr.slice(maxValueIndex + 1);
-        removable = removable - maxValueIndex;
     }
-    return `${tempStack.join('')}${numToArr.join('')}`;
 };
 
-// console.log(solution("4177252841", 4));
+console.log(solution("4177252841", 4));
 // console.log(solution("1924", 2));
 // console.log(solution("1231234", 3));
 // console.log(solution("10100", 3));
