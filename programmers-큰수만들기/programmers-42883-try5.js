@@ -1,25 +1,51 @@
 const solution = (number, k) => {
     let numToArr = [...number].map(arg => Number(arg));
-    let removable = k;
     const lengthOfOriginNumber = numToArr.length;
+    let removable = k;
     
-    // 최댓값의 기준: 이전의 최댓값보다 크다 && 다음의 값보다 크다
-    // 최댓값을 찾으려는 범위: 첫 번째 수부터 removable 까지
-    // 최댓값의 초기값: 첫 번째 index
-    let tempMax = numToArr[0];
-    let tempMaxIndex = 0;
-    for (let i = 0; i < removable; i++) {
-
+    const maxValArr = [];
+    while (removable > 0) {
+        if (maxValArr.length >= lengthOfOriginNumber - k) {
+            return maxValArr.join('');
+        }
+        let isNotChanged = true;
+        let tempMaxIndex = 0;
+        let tempMax = 0;
+        for (let i = 0; i <= removable; i++) {
+            if (i === 0) {
+                tempMax = numToArr[i];
+                continue;
+            }
+            if (numToArr[i] > tempMax) {
+                if (numToArr[i] >= numToArr[i+1] || numToArr[i+1] === undefined) {
+                    isNotChanged = !isNotChanged;
+                    maxValArr.push(...numToArr.splice(i, 1));
+                    numToArr = numToArr.slice(i);
+                    removable = removable - i;
+                    break;
+                }
+                tempMax = numToArr[i];
+                tempMaxIndex = i;
+                continue;
+            }
+            
+        }
+        if (isNotChanged) {
+            maxValArr.push(...numToArr.splice(tempMaxIndex, 1));
+            numToArr = numToArr.slice(tempMaxIndex);
+            removable = removable - tempMaxIndex;
+        }
     }
+    return `${maxValArr.join('')}${numToArr.join('')}`;
 };
 
-console.log(solution("4177252841", 4));
+// console.log(solution("4177252841", 4));
 // console.log(solution("1924", 2));
 // console.log(solution("1231234", 3));
 // console.log(solution("10100", 3));
 // console.log(solution("54321", 3));
 // console.log(solution("222222", 4));
-// console.log(solution("1", 0));
+console.log(solution("1", 0));
 // console.log(solution("54321", 3));
 // console.log(solution("4177252841", 4));
 // console.log(solution("1742532", 5));

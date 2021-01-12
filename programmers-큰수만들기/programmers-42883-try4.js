@@ -1,5 +1,4 @@
 const solution = (number, k) => {
-    // let numToArr = [...number].map(arg => Number(arg));
     let numToArr = [...number];
     let removableCounter = k;
     let loopCounter = 0;
