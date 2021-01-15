@@ -16,6 +16,6 @@ const solution = (number, k) => {
         // 해당 과정이 끝난다면 이제 tempStack 에 num 을 넣어준다
         tempStack.push(num);
     }
-    // 
+    // tempStack 은 크기순으로 정렬이 되었으니, 잘라내지 못 한 수가 있다면 slice 로 잘라준다
     return tempStack.slice(0, tempStack.length - removable).join('');
 };
