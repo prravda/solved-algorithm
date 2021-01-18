@@ -5,6 +5,8 @@ const solution = (citations) => {
   const filteredCits = [...removeDuplicate];
 
   let idxToReturn = 0;
+
+  // edge case 조금 더 고려해보기
   
   for (let i = 0; i < filteredCits.length - 1; i++) {
     let startCit = filteredCits[i];
@@ -30,14 +32,14 @@ const solution = (citations) => {
 
 // test case 모음: https://programmers.co.kr/questions/13499
 // console.log(solution([12, 11, 10, 9, 8, 1]));
-console.log(solution([4, 4, 4])); // 3
+// console.log(solution([4, 4, 4])); // 3
 // console.log(solution([4, 4, 4, 5, 0, 1, 2, 3])); 
 // console.log(solution([6, 6, 6, 6, 6, 1])); // 5
 // console.log(solution([10, 11, 12, 13] === 4));
 // console.log(solution([3, 0, 6, 1, 5] === 3));
 // console.log(solution([0, 0, 1, 1] === 1));
 // console.log(solution([0, 1])); // 1
-// console.log(solution([10, 9, 4, 1, 1] === 3));
+console.log(solution([10, 9, 4, 1, 1])); // 3
 
 // console.log(solution([12, 11, 10, 9, 8, 1]));
 // console.log(solution([3, 0, 6, 1, 5]));
