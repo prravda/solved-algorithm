@@ -1,4 +1,3 @@
-// 내장 sort method 를 이용해서 푼다면?
 const solution = (citations) => {
   let largestCit = Math.max(...citations);
   let isNotFound = true;

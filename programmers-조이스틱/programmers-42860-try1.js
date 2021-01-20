@@ -5,9 +5,8 @@ const solution = (name) => {
   const targetName = [...name];
 
   let neededMoving = 0;
-  let neededCursorMovingTillFirstA = 0;
-  let neededCursorMovingTillLastA = 0;
-
+  let neededCursorMoving = 0;
+  
   /**
    * 고려해야 하는 상황
    * A가 나오는 경우 어떻게 해야하는가? -> 커서를 왼쪽으로 할지 오른쪽으로 할지 뭐가 더 합리적인지 기준을 찾자
@@ -19,30 +18,22 @@ const solution = (name) => {
   // A 가 마지막으로 등장하는 위치도 구한다
   const lastIndexOfLetterA = targetName.lastIndexOf("A");
 
-  // A가 존재하는 경우
-  if (indexOfLetterA !== -1) {
-    // A의 위치에 따른 판별식 -> A 의 첫 등장이 문자열의 중간 index, 혹은 그 이전이라면 A 직전까지 처리 후 뒤로 도는게 더 합리적
-    if (indexOfLetterA <= Math.floor(targetName.length / 2)) {
-      neededCursorMovingTillFirstA = neededCursorMovingTillFirstA + (indexOfLetterA - 1) * 2;
+  // 만약 A가 존재하고, A가 처음 나오는 구간부터 A가 마지막으로 등장하는 구간까지 전부 A로 채워져 있다면
+  if (indexOfLetterA !== -1 && targetName.slice(indexOfLetterA, (lastIndexOfLetterA + 1)).every(arg => arg === "A")) {
+    if (indexOfLetterA <= 1) {
+      neededCursorMoving = neededCursorMoving + 1 + (targetName.length - lastIndexOfLetterA - 1);
+    } else {
+      neededCursorMoving = neededCursorMoving + (indexOfLetterA - 1) * 2 + (targetName.length - lastIndexOfLetterA - 1);
     }
-  
-    // A의 위치에 따른 판별식 -> A 의 첫 등장이 문자열의 중간 index 이후라면 A를 무시하고 그냥 쭉 가는게 더 합리적
-    if (indexOfLetterA > Math.floor(targetName.length / 2)) {
-      neededCursorMovingTillFirstA = neededCursorMovingTillFirstA + indexOfLetterA;
-    }
-  
-    // A 의 연속성에 따른 판별식 -> A가 연속으로 나온다면(1개만 나오는 경우도 포함)  
-    if ([...targetName].slice(indexOfLetterA, (lastIndexOfLetterA + 1)).every(arg => arg === "A")) {
-      neededCursorMovingTillLastA = neededCursorMovingTillLastA + 1
-    }
+  } else {
+    // 위의 조건 중 하나라도 해당이 되지 않는다면 -> 그냥 처음부터 쭉 도나 뒤를 찍고 도나 똑같음
+    neededCursorMoving = neededCursorMoving + (targetName.length - 1);
   }
-  // A가 존재하지 않는 경우 -> 이름의 길이 - 1 만큼 커서 이동을 하고 A와 관련된 것이 아니니 neededMoving 에 직접 더해줌
-  neededMoving = neededMoving + (targetName.length - 1);
 
-  for (const targetLetter of targetName) {
+  for (let i = 0; i < targetName.length; i++) {
     // 알파벳 판별식 
     // indexOfTargetLetter > 13 인 경우 -> A -> Z -> 알파벳 으로 가는게 더 합리적
-    const indexOfTargetLetter = letters.indexOf(targetLetter);
+    const indexOfTargetLetter = letters.indexOf(targetName[i]);
 
     if (indexOfTargetLetter > 13) {
       neededMoving = neededMoving + (26 - indexOfTargetLetter);
@@ -55,8 +46,14 @@ const solution = (name) => {
       continue;
     }
   }
-
-  console.log(neededMoving);
+  console.log(neededMoving + neededCursorMoving);
+  return neededMoving + neededCursorMoving;
 };
 
-solution("JEROEN");
+// solution("JEROEN");
+// solution("JAN");
+solution("BBBAA");
+
+// edge case
+// AAAAA
+// BBBAA
