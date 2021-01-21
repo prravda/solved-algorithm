@@ -59,6 +59,7 @@ const solution = (name) => {
 // solution("AABAAABA");
 solution("ABABAAAAABA"); // 11
 solution("AAABAAAA"); // 2
+solution("AAABAA"); // 2
 
 // edge case
 // AAAAA
