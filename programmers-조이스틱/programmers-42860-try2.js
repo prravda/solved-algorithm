@@ -37,17 +37,22 @@ solution("BBBAA");
 // AAAAA
 // BBBAA
 
-const beforeA = [];
-const indexOfA = [];
+const serialA = [];
+const exceptSerialA = [];
+let neededMoving = 0;
 for (let i = 0; i < targetName.length; i++) {
-  // A 가 등장하기 전까지 beforeA 에 element 들을 넣어주고 연산을 종료한다
-  while (targetName[i] !== "A") {
-    beforeA.push(targetName[i]);
-    continue;
+  if (targetName[i] === "A") {
+    if (serialA.length === 0) {
+      serialA.push(i);
+      continue;
+    }
+    if (serialA[serialA.length - 1] + 1 === i) {
+      serialA.push(i);
+      continue;
+    }
   }
-  if (indexOfA.length === 0) {
-    indexOfA.push(targetName[i]);
-    continue;
-  }
-  while ()
+  exceptSerialA.push(targetName[i]);
 }
+
+console.log(serialA);
+console.log(exceptSerialA);
