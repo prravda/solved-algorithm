@@ -107,7 +107,7 @@ const solution = (name) => {
         // 연속으로 A가 나오다가 끊긴 경우
       } else {
         const caseOfBackWard = spaceCounter(name.slice(0, (tempStack[0] + 1))) + spaceCounter(name.slice(tempStack[tempStack.length - 1])) + 1;
-        const caseOfStraight = name.length - 1;
+        const allCaseOfCursorMoving = name.length - 1;
       }
     }
   }
