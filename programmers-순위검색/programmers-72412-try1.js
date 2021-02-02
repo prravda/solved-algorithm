@@ -3,16 +3,17 @@ const solution = (info, query) => {
         const regex = /and /g;
         const condition = eachQuery.replace(regex, '').split(' ');
         let numberOfFullfilledApplicant = 0;
+        
         for (const applicant of info) {
             const applicantCondition = applicant.split(' ');
-            const lastIndex = applicantCondition.length - 1;
+            const indexOfScore = applicantCondition.length - 1;
+
+            // 지원자의 점수가 자격에 기재된 점수 미만이라면 해당 지원자는 검산하지 않고 바로 넘어간다
+            if (condition[indexOfScore] !== '-' && Number(applicantCondition[indexOfScore]) < Number(condition[indexOfScore])) {
+                continue;
+            }
+
             for (let i = 0; i < applicantCondition.length; i++) {
-                // 가장 먼저 점수를 비교해준다, 점수 조건이 맞지 않으면 앞의 조건을 판별할 의미가 없기 때문이다
-                // 점수가 요구사항보다 
-                if (condition[lastIndex] !== '-' && Number(applicantCondition[lastIndex] < Number(condition[lastIndex]))) {
-                    break;
-                }
-                // 마지막에 점수를 비교하는 경우 -> Number 형식으로 바꾸어서 비교한다
                 // 조건 중 '-' 가 있어 해당 조건을 신경쓰지 않는다면 넘어감
                 if (i === applicantCondition.length - 1) {
                     if (condition[i] === '-' || Number(applicantCondition[i]) >= Number(condition[i])) {
