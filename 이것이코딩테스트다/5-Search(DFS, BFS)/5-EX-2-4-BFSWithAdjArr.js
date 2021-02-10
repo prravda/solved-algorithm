@@ -25,15 +25,19 @@ const visitedNodeList = [];
 
 const bfs = (graph, current, visited) => {
   // 방문처리가 제대로 안 되는듯 하다. 왜 그런걸까 생각해보자.
+  // 모든 node 가 방문처리가 되면 연산을 종료하는 방법을 사용할 수도 있을 거 같다.
+  // 그러나 이는 하드코딩에 가깝다.
   visited[current] = true;
   visitedNodeList.push(current);
+  // 하위 node 중 방문하지 않은 node 들만 queue 에 채워준다
   queueForVisited.push(...graph[current].filter(arg => !visited[arg]));
   // 그 queue 가 다 빌때까지, queue.deque(arr.shift()) 한 값들로 또 재귀를 돌려줌
   while(queueForVisited.length > 0) {
     bfs(graph, queueForVisited.shift(), visited);
   }
+  return visitedNodeList;
 };
 
-bfs(targetGraph, 1, visitedArr);
+console.log(bfs(targetGraph, 1, visitedArr));
 
 
