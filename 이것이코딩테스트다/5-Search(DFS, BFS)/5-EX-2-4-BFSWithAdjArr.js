@@ -13,31 +13,36 @@ const targetGraph = [
   [1, 7]
 ];
 
-// 0번 node 가 없이 1번부터 시작하기 때문에, 해당 graph 는 9개의 element 를 가진다.
-
-// breadth-first search 이므로, 가장 밑바닥부터 찍고 올라오는 게 아니라 해당 층위의 node 를 전부 탐색하고 내려가는 방식이다
-// 그렇기 때문에 DFS 에서 stack 을 사용했던 것과는 다르게 queue 구조를 사용한다
-// 책만 보고 일단은 나 스스로 구현을 시도해보자
-
 const visitedArr = targetGraph.map(arg => false);
-const queueForVisited = [];
-const visitedNodeList = [];
 
+// without recursion
 const bfs = (graph, current, visited) => {
-  // 방문처리가 제대로 안 되는듯 하다. 왜 그런걸까 생각해보자.
-  // 모든 node 가 방문처리가 되면 연산을 종료하는 방법을 사용할 수도 있을 거 같다.
-  // 그러나 이는 하드코딩에 가깝다.
+  const visitedNodeListWithOrder = [];
+  // 가장 먼저 queue 로 사용할 동적 배열을 만들어주고 안에 current 를 넣어준다 
+  const queueForVisited = [current];
+  // 그 다음 현재 node 를 visited arr로부터 방문 처리한다
   visited[current] = true;
-  visitedNodeList.push(current);
-  // 하위 node 중 방문하지 않은 node 들만 queue 에 채워준다
-  queueForVisited.push(...graph[current].filter(arg => !visited[arg]));
-  // 그 queue 가 다 빌때까지, queue.deque(arr.shift()) 한 값들로 또 재귀를 돌려줌
-  while(queueForVisited.length > 0) {
-    bfs(graph, queueForVisited.shift(), visited);
+  // queue 가 빌 때까지 반복문을 실행한다
+  while (queueForVisited.length > 0) {
+    // queue 의 맨 앞에 있는 element 를 뺀 뒤, targetNode 라는 변수에 할당한다
+    const targetNode = queueForVisited.shift();
+    visitedNodeListWithOrder.push(targetNode);
+    // 그리고 그 element 의 자식 node 들을 기준으로 iteration 을 한다 
+    for (const childOfTargetNode of graph[targetNode]) {
+      // childOfTargetNode 중 아직 방문하지 않은 것들에 한해서
+      if (!visited[childOfTargetNode]) {
+        // queue 에 해당 childOfTargetNode 를 넣어주고
+        queueForVisited.push(childOfTargetNode);
+        // 방문 처리를 해준다
+        visited[childOfTargetNode] = true;
+        // 사실 없어도 되는 logic 이지만, 방문한 순서를 확인하기 쉽게 하기 위해서
+        // 배열을 또 하나 만들고 그 곳에 방문한 순서대로 node 들을 넣어준다
+      }
+    }
   }
-  return visitedNodeList;
+  return visitedNodeListWithOrder;
 };
 
-console.log(bfs(targetGraph, 1, visitedArr));
+bfs(targetGraph, 1, visitedArr);
 
 
