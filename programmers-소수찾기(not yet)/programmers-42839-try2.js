@@ -14,9 +14,22 @@ const solution = (numbers) => {
       
         const backTracker = (args, tempArr) => {
           if (tempArr.length === numberToPick) {
-            const resultFromIndex = tempArr.map(eachIdx => args[eachIdx]).join('');
-            if (!results.includes(resultFromIndex)) {
-              results.push(resultFromIndex);
+            // index 기준으로 조합해서 하나의 문자열로 만들어줌
+            /*
+            [좀 더 풀어보기]
+                1. 0이 앞자리에 없을때까지 0을 지워주는 과정이 필요
+                2. 그렇게 지운 수가 results 에 존재하는지 확인 후, 존재하지 않는 경우만 넣어줌
+            */
+            const resultFromIndex = tempArr.map(eachIdx => args[eachIdx]);
+
+            while(resultFromIndex[0] === '0') {
+                resultFromIndex.shift();
+            }
+            const refinedStr = resultFromIndex.join('');
+            
+
+            if (!results.includes(refinedStr)) {
+              results.push(refinedStr);
             }
           }
       
@@ -34,14 +47,16 @@ const solution = (numbers) => {
     }
 
     for (let i = 1; i <= numbers.length; i++) {
-        allCases.push(...calcPermutation([...numbers], i));
+        const permute = calcPermutation([...numbers], i);
+        // console.log(permute);
+        allCases.push(...permute);
     }
 
     const primeBaseCase = [2, 3, 5, 7]
     const primes = [];
     for (const eachNum of allCases) {
-        // 0이거나 1이면 생략
-        if (eachNum[0] === '0' || eachNum === '1') {
+        // 1이면 생략
+        if (eachNum === '1') {
             continue;
         }
         // 만약 
@@ -56,11 +71,12 @@ const solution = (numbers) => {
 
         primes.push(eachNum);
     }
-    
-    console.log(allCases);
-    console.log(primes);
 
-    return primes.length;
+    // console.log(allCases);
+    // console.log('--------------------');
+    // console.log([...new Set(primes)]);
+
+    return [...new Set(primes)].length;
 }
 
-solution('5604034');
+solution('0101');
