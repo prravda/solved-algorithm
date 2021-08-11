@@ -19,6 +19,9 @@
  * 100이 넘어갈 때마다 finishedTask ++ 를 해 주고, 더 이상 넘어가지 않는 경우엔 deployedTask.push(finishedTask) 를 한다
  *
  * processes.length === 0 이 될 때까지 위의 과정을 반복한다.
+ *
+ * 흥준: while 이 아니라, 소요일을 전부 계산한 다음에 그 값의 pattern 을 찾는 게 문제의 의도 아니었을까 -> 이렇게 하면 stack/queue 로 풀수있을듯
+ *
  */
 
 function solution(progresses, speeds) {
