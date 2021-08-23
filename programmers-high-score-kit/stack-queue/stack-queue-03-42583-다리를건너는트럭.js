@@ -1,4 +1,4 @@
-const solution = (bridge_length, weight, truck_weights) => {
+function solution(bridge_length, weight, truck_weights) {
   const trucksWithCount = truck_weights.map((eachTruckWeight) => {
     return { truckWeight: eachTruckWeight, count: 0 };
   });
@@ -41,4 +41,4 @@ const solution = (bridge_length, weight, truck_weights) => {
     }
   }
   return neededTime + 1;
-};
+}
