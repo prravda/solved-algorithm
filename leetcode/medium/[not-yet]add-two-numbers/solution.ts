@@ -42,26 +42,25 @@ const extractor = (list: ListNode | null): number => {
   return extractorHelper(list, 0, 0);
 };
 
-// 00:53, 2021/09/03, cannot implement the recursive list node maker.
-const listNodeMaker = (
-  stringifiedAccumulatedValueArray: string[],
-  index: number,
-  nodeToReturn: ListNode
-): ListNode => {
-  console.log(stringifiedAccumulatedValueArray);
-  if (index === stringifiedAccumulatedValueArray.length) {
-    return nodeToReturn;
+const setValueToListNode = (list: ListNode, value: number): void => {
+  let current = list;
+  if (current.val === -1) {
+    current.val = value;
+    return;
   }
-  const currentDigit = Number(stringifiedAccumulatedValueArray[index]);
-  console.log(currentDigit);
-  nodeToReturn.val = currentDigit;
-  nodeToReturn.next = new ListNode();
-  console.log(nodeToReturn);
-  return listNodeMaker(
-    stringifiedAccumulatedValueArray,
-    index + 1,
-    nodeToReturn.next
-  );
+  while (current.next) {
+    current = current.next;
+  }
+  current.next = new ListNode(value);
+  return;
+};
+
+const makeListNodeFromNumbers = (numbers: number[]): ListNode => {
+  let listNode = new ListNode(-1);
+  for (let i = 0; i < numbers.length; i++) {
+    setValueToListNode(listNode, numbers[i]);
+  }
+  return listNode;
 };
 
 const addTwoNumbers = (
@@ -74,7 +73,9 @@ const addTwoNumbers = (
   const valueOfL1 = extractor(l1);
   const valueOfL2 = extractor(l2);
   const sumOfValueOfLists = valueOfL1 + valueOfL2;
-  return listNodeMaker([...String(sumOfValueOfLists)], 0, new ListNode());
+  return makeListNodeFromNumbers(
+    [...String(sumOfValueOfLists)].map((arg) => Number(arg)).reverse()
+  );
 };
 
 const l1 = new ListNode(2, new ListNode(4, new ListNode(3)));
