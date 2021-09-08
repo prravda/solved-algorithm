@@ -14,23 +14,19 @@
 // - 그런데, 일반적으로 바로 앞의 2개의 element 라는 단위로 나눈 [각 시행] 마다 [최적의 선택] 을 반복해도 결과적인 최적의 해를 구할 수 없다.
 // - 어떤 법칙을 추론할 수 있을까?
 //   - [3, 4, 5] 가 있다면 4를 골라야 한다.
-//   - [3, 4, 5, 3, 4, 5] 가 있다면 3, 4,
+//   - [3, 4, 5, 3, 4, 5] 가 있다면 총 12
 //   - [3, 10, 10] 이 있다면 10 을 골라야 한다.
 //   - [10, 15, 20] 이 있다면 15를 골라야 한다.
 // - 단순하게 현 시점에서 1개를 밟는 경우와 2개를 밟는 경우를 비교해보면? -> 도출할 수 없다.
-// - 해결의 실마리를 찾은 거 같다. 배열의 맨 뒤부터 역으로 밟아나가면 된다.
+// - 해결의 실마리를 찾은 거 같다. 배열의 맨 뒤부터 역으로 밟아나가면 된다. -> 이것도 아니었다.
+// - 완전탐색 인걸까?
+// - 각 시행 단위를 4개씩 나누면? 최대 4칸까지 이동이 가능하니깐
+// [힌트]
+// Say f[i] is the final cost to climb to the top from step i.
+// Then f[i] = cost[i] + min(f[i+1], f[i+2]).
+// i번째 계단에서 끝까지 가는데 필요한 최종 cost 는 cost[i] 의 합과 그 다음번 계단에서, 그 다다음번 계단에서 끝까지 가는 비용 중 적은 비용이다.
 
-const minCostClimbingStairs = (cost: number[]): number => {
-  const lengthOfCost = cost.length;
-  const climber = (
-    costArr: number[],
-    currentIndex: number,
-    accumulatedCost: number
-  ): number => {
-    // - costArr[currentIndex] 와 costArr[currentIndex - 1] 을 비교한다.
-    //   - 만약 costArr 를 index 로 접근했을 때 undefined 가 반환된다면, 해당 값은 0으로 대체한다.
-    //   - 두 값을 비교했을 때, 더 작은 쪽으로 currentIndex 를 이동하면서 움직인다.
-    //     - ⚠️ 그런데 만약 두 값이 같은 경우엔 어떻게 해야할까?
-    return accumulatedCost;
-  };
-};
+// 힌트를 찾아보니 DP였다. 알고리즘 개념이 전혀 없어서 접근방법조차 몰랐던 것이다.
+// 이것이 취업을 위한 코딩테스트다 책부터 보고 나서 공부 해야겠다.
+
+const minCostClimbingStairs = (cost: number[]): number => {};
