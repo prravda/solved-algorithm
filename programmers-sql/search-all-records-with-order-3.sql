@@ -1,0 +1,7 @@
+-- 모든 records 중에서 
+-- NAME 만을 SELELCT 하고
+-- DATETIME 이 가장 빠른 한개의 RECORD 만을 출력한다.
+SELECT NAME
+FROM ANIMAL_INS
+ORDER BY DATETIME ASC
+LIMIT 1;
