@@ -11,6 +11,7 @@
 // time complexity
 // 한 문자열의 길이는 100, 그리고 문자열이 담긴 배열의 길이는 100 개이다.
 // 한 문자열에 있는 문자 길이만큼 모든 배열들을 순회해야 하므로 time complexity 는 100^2, 즉 N^2 이라고 할 수 있겠다.
+// hash tabel 을 만드니, 2 * N^2 가 되겠지만, BIG O Notation 으로는 앞의 상수는 무시하기에...
 
 // pseudo code
 // 0. 0번째 element 의 문자열을 기준을 삼는다.
