@@ -6,9 +6,10 @@
   "author": "InseobJeon <is.jeon@chabot.co.kr>",
   "license": "MIT",
   "dependencies": {
-    "ts-node": "^10.2.1"
+    "ts-node": "^10.4.0"
   },
   "devDependencies": {
+    "@types/node": "^16.11.11",
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-typescript": "^7.15.0",
