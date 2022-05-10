@@ -1,4 +1,6 @@
 /Test
 **/.DS_Store
-node_modules
+/node_modules
 /venv
+/.idea
+/.vscode

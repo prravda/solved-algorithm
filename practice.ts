@@ -1,35 +1,39 @@
-class BinarySearchTree {
-  private value: number;
-  private left: null | BinarySearchTree;
-  private right: null | BinarySearchTree;
+// class BinarySearchTree {
+//   private value: number;
+//   private left: null | BinarySearchTree;
+//   private right: null | BinarySearchTree;
 
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
+//   constructor(value) {
+//     this.value = value;
+//     this.left = null;
+//     this.right = null;
+//   }
 
-  addChild(childValue): void {
-    if (childValue >= this.value) {
-      if (this.right === null) {
-        this.right = new BinarySearchTree(childValue);
-        return;
-      }
-      this.right.addChild(childValue);
-    }
-    if (this.left === null) {
-      this.left = new BinarySearchTree(childValue);
-      return;
-    }
-    this.left.addChild(childValue);
+//   addChild(childValue): void {
+//     if (childValue >= this.value) {
+//       if (this.right === null) {
+//         this.right = new BinarySearchTree(childValue);
+//         return;
+//       }
+//       this.right.addChild(childValue);
+//     }
+//     if (this.left === null) {
+//       this.left = new BinarySearchTree(childValue);
+//       return;
+//     }
+//     this.left.addChild(childValue);
+//   }
+// }
+
+class CustomError extends Error {
+  constructor(message: string) {
+    super(message);
+    // Error.captureStackTrace(this);
   }
 }
 
-const t = new BinarySearchTree(2);
-t.addChild(6);
-t.addChild(1);
-t.addChild(4);
-t.addChild(3);
-t.addChild(5);
+const customErrorInstance = new CustomError('정기관 척살');
+console.log(customErrorInstance.stack);
 
-console.log(t);
+const basicErrorInstance = new Error();
+console.log(basicErrorInstance.stack);
