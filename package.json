@@ -2,8 +2,8 @@
   "name": "solved-algorithm",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/InseobJeon/solved-algorithm.git",
-  "author": "InseobJeon <is.jeon@chabot.co.kr>",
+  "repository": "https://github.com/prravda/solved-algorithm.git",
+  "author": "InseobJeon <pravda.kracota@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "ts-node": "^10.8.2"
