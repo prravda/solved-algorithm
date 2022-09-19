@@ -9,44 +9,31 @@ DIRECTION = {
   'RIGHT': 3,
 }
 
+# Define a Node class
 class Node:
   def __init__(self, row: int, col: int) -> None:
     self.row = row
     self.col = col
     self.direction = DIRECTION['UP'] 
 
-# maze = [ 
-#   [1, 0, 0, 0],
-#   [1, 1, 0, 1],
-#   [0, 1, 0, 0],
-#   [1, 1, 1, 1],
-# ]
-
 maze = [
   [ 1, 0, 1, 1, 0 ],
   [ 1, 1, 1, 0, 1 ],
   [ 0, 1, 0, 1, 1 ],
   [ 1, 1, 1, 1, 1 ],
-  # [ 1, 1, 1, 1, 1 ],
+  [ 1, 1, 1, 1, 1 ],
 ]
-
-
-# maze = [
-#   [ 1, 0, 0 ],
-#   [ 1, 1, 0 ],
-#   [ 0, 1, 1 ],
-# ]
 
 SIZE_MAZE_ROW = len(maze)
 SIZE_MAZE_COL = len(maze[0])
 
 is_visited = [[False for i in range(SIZE_MAZE_COL)] for j in range(SIZE_MAZE_ROW)]
 
-def escapeMaze(maze: list[list[int]], fx: int, fy: int) -> bool:
+def escapeMaze(maze, fx, fy):
   # Create a strating point
   # And put it into the stack
   start = Node(0, 0)
-  stack: list[Node] = []
+  stack = []
   stack.append(start)
 
   # While the stack is not empty, do this processes
@@ -110,7 +97,7 @@ def escapeMaze(maze: list[list[int]], fx: int, fy: int) -> bool:
       continue
 
     if direction == DIRECTION['RIGHT']:
-      if col + 1 < SIZE_MAZE_ROW and \
+      if col + 1 < SIZE_MAZE_COL and \
         maze[row][col + 1] == 1 and \
         is_visited[row][col + 1] == False:  
         next_route = Node(row, col + 1)
@@ -127,13 +114,4 @@ def escapeMaze(maze: list[list[int]], fx: int, fy: int) -> bool:
   
   return False
 
-
-    
-          
-    
-    
-
-print(escapeMaze(maze))
-    
-
-    
+print(escapeMaze(maze, 4, 4))
