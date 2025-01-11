@@ -6,58 +6,49 @@ class Solution:
         if len(height) <= 2:
             return 0
 
-        pointer_one, pointer_two = 0, 1
+        len_height = len(height)
 
-        # result
-        total_trapped_rain_water = 0
+        # create a variable max_left
+        # and set height[0]
+        # then create a variable max_right
+        # and set height[len_height - 1]
+        max_left, max_right = height[0], height[len_height - 1]
 
-        # buffer
-        buffered_trapped_rain_water = 0
+        # create a variable left
+        # and set 1
+        # create a variable right
+        # and set len_height - 2
+        left, right = 1, len_height - 2
 
-        # if pointer_two move out of range, exit the result
-        while pointer_one < pointer_two and pointer_two < len(height):
-            # ASC case: condition for end of calculating trapped rain water
-            if height[pointer_one] <= height[pointer_two]:
-                # if buffer is empty, just move to the next
-                if buffered_trapped_rain_water == 0:
-                    pointer_one += 1
-                    pointer_two += 1
+        # variable for storing amount of trapped water
+        trapped_water = 0
 
-                # if buffer is not empty,
+        while left <= right:
+            # focused on smaller height,
+            # because trapped water derived by smaller height
+            if max_left < max_right:
+                # compare max_left and height[left]
+                # if height[left] is larger than max_left
+                # just update it
+                if height[left] > max_left:
+                    max_left = height[left]
+                # calculate trapped water
+                # the amount of trapped water is
+                # max_left - height[left]
+                # trapped water derived by smaller one
+                # add this calculation result to trapped_water
                 else:
-                    # - add buffered trapped water to total trapped water
-                    # - and flush the buffer
-                    total_trapped_rain_water += buffered_trapped_rain_water
-                    buffered_trapped_rain_water = 0
-
-                    # - move pointers
-                    pointer_one = pointer_two
-                    pointer_two = pointer_one + 1
-
-            # DESC case: condition for start of calculating trapped rain water
+                    trapped_water += max_left - height[left]
+                # if these progresses are done,
+                # move the left to next
+                left += 1
             else:
-                # if pointer two find to the last of height
-                if pointer_two == len(height) - 1 and buffered_trapped_rain_water != 0:
-                    # flush buffer
-                    buffered_trapped_rain_water = 0
-                    # move pointer_one to the next
-                    pointer_one += 1
-                    # move pointer_tow to the next of pointer_one
-                    pointer_two = pointer_one + 1
+                # same with left case
+                if height[right] > max_right:
+                    max_right = height[right]
                 else:
-                    # add buffer
-                    buffered_trapped_rain_water += (
-                        height[pointer_one] - height[pointer_two]
-                    )
-                    # move pointer_two to next
-                    pointer_two += 1
+                    trapped_water += max_right - height[right]
+                right -= 1
 
-        return total_trapped_rain_water
-
-
-# test_case = [4, 2, 0, 3, 2, 5]
-# test_case = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
-test_case = [4, 2, 3]
-# test_case = [2, 2, 2]
-result = Solution().trap(test_case)
-print(result)
+        # return the amount of trapped water
+        return trapped_water
